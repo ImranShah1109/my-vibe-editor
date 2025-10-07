@@ -20,6 +20,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             image: user.image!,
 
             accounts: {
+              // @ts-ignore
               create: {
                 type: account.type,
                 provider: account.provider,
@@ -30,11 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token_type: account.token_type,
                 scope: account.scope,
                 id_token: account.id_token,
-                session_state:
-                  account.session_state !== undefined &&
-                  account.session_state !== null
-                    ? String(account.session_state)
-                    : undefined,
+                session_state: account.session_state,
               },
             },
           },
@@ -64,11 +61,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               token_type: account.token_type,
               scope: account.scope,
               id_token: account.id_token,
-              session_state:
-                account.session_state !== undefined &&
-                account.session_state !== null
-                  ? String(account.session_state)
-                  : undefined,
+              // @ts-ignore
+              session_state: account.session_state,
             },
           });
         }
