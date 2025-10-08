@@ -20,7 +20,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             image: user.image!,
 
             accounts: {
-              // @ts-ignore
               create: {
                 type: account.type,
                 provider: account.provider,
@@ -31,7 +30,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token_type: account.token_type,
                 scope: account.scope,
                 id_token: account.id_token,
-                session_state: account.session_state,
+                session_state:
+                  typeof account.session_state === "string"
+                    ? account.session_state
+                    : account.session_state !== undefined
+                    ? JSON.stringify(account.session_state)
+                    : "",
               },
             },
           },
@@ -61,8 +65,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               token_type: account.token_type,
               scope: account.scope,
               id_token: account.id_token,
-              // @ts-ignore
-              session_state: account.session_state,
+              session_state:
+                typeof account.session_state === "string"
+                  ? account.session_state
+                  : account.session_state !== undefined
+                  ? JSON.stringify(account.session_state)
+                  : "",
             },
           });
         }
@@ -73,6 +81,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (token?.sub) return token;
 
       const existingUser = await getUserById(token.sub!);
+
       if (!existingUser) return token;
 
       token.name = existingUser.name;
@@ -85,7 +94,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
+      }
 
+      if (token.sub && session.user) {
         session.user.role = token.role;
       }
 
