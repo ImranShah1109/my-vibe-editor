@@ -23,7 +23,7 @@ async function handleGithubSignIn() {
 
 const SignInFormClient = () => {
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md shadow-md">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
           Sign In
