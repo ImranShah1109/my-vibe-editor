@@ -16,14 +16,13 @@ import { useCurrentUser } from "../hooks/use-current-user";
 
 const UserButton = () => {
   const user = useCurrentUser();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <div className={cn("relative rounded-full")}>
+        <div className={cn("relative rounded-full cursor-pointer")}>
           <Avatar>
             <AvatarImage src={user?.image!} alt={user?.name!} />
-            <AvatarFallback className="bg-red-500">
+            <AvatarFallback className="bg-purple-700">
               <User className="text-white" />
             </AvatarFallback>
           </Avatar>
@@ -31,12 +30,12 @@ const UserButton = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="mr-4">
-        <DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
           <span>{user?.email}</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <LogoutButton>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             <LogOut className="h-4 w-4 mr-2" />
             LogOut
           </DropdownMenuItem>
