@@ -124,7 +124,7 @@ export function DashboardSidebar({
                 </div>
               ) : (
                 starredPlaygrounds.map((playground) => {
-                  const IconComponent = lucideIconMap[playground.icon] || Code2;
+                  const IconComponent = playground.icon;
                   return (
                     <SidebarMenuItem key={playground.id}>
                       <SidebarMenuButton
@@ -133,9 +133,14 @@ export function DashboardSidebar({
                         tooltip={playground.name}
                       >
                         <Link href={`/playground/${playground.id}`}>
-                          {IconComponent && (
+                          {/* {IconComponent && (
                             <IconComponent className="h-4 w-4" />
-                          )}
+                          )} */}
+                          <Image
+                            src={IconComponent}
+                            className="h-4 w-4"
+                            alt="</>"
+                          />
                           <span>{playground.name}</span>
                         </Link>
                       </SidebarMenuButton>

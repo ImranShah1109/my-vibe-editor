@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import TemplateSelectionModal from "./template-selection-modal";
 
 const AddNewButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +20,7 @@ const AddNewButton = () => {
         transition-all duration-300 ease-in-out
         hover:bg-background hover:border-[#4F07D1] hover:scale-[1.02]
         shadow-[0_2px_10px_rgba(0,0,0,0.08)]
-        hover:shadow-[0_10px_30px_rgba(107, 50, 209,0.15)]"
+        hover:shadow-[0_10px_30px_rgba(107,50,209,0.15)]"
       >
         <div className="flex flex-row justify-center items-start gap-4">
           <Button
@@ -50,7 +51,11 @@ const AddNewButton = () => {
           />
         </div>
       </div>
-      {/* // Todo Implement Template Selecting Model here */}
+      <TemplateSelectionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={() => {}}
+      />
     </>
   );
 };

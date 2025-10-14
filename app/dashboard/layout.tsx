@@ -10,16 +10,17 @@ export default async function DashboardLayout({
   const playground = await getAllPlaygroundForUser();
 
   const technologyIconMap: Record<string, string> = {
-    REACT:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    NEXTJS:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-    EXPRESSJS:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-    VUE: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-    HONO: "https://hono.dev/favicon.ico",
-    ANGULAR:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+    REACT: "/react.svg",
+    //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    NEXTJS: "/nextjs-icon.svg",
+    //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    EXPRESSJS: "/expressjs-icon.svg",
+    //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    VUE: "/vuejs-icon.svg",
+    //"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+    HONO: "/hono.svg", //"https://hono.dev/favicon.ico",
+    ANGULAR: "/angular-2.svg",
+    //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
     // NODEJS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   };
 
@@ -28,7 +29,7 @@ export default async function DashboardLayout({
     name: item.title,
     starred:
       item.Starmark.filter((star) => star.playgroundId === item.id).length > 0,
-    icon: technologyIconMap[item.template] || "Code2",
+    icon: technologyIconMap[item.template] || "/code.svg",
   }));
 
   return (
