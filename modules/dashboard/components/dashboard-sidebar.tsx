@@ -124,7 +124,7 @@ export function DashboardSidebar({
                 </div>
               ) : (
                 starredPlaygrounds.map((playground) => {
-                  const IconComponent = playground.icon;
+                  const IconComponent = playground.icon || "/code.svg";
                   return (
                     <SidebarMenuItem key={playground.id}>
                       <SidebarMenuButton
@@ -133,12 +133,10 @@ export function DashboardSidebar({
                         tooltip={playground.name}
                       >
                         <Link href={`/playground/${playground.id}`}>
-                          {/* {IconComponent && (
-                            <IconComponent className="h-4 w-4" />
-                          )} */}
                           <Image
                             src={IconComponent}
-                            className="h-4 w-4"
+                            width={16}
+                            height={16}
                             alt="</>"
                           />
                           <span>{playground.name}</span>
@@ -165,8 +163,7 @@ export function DashboardSidebar({
               {starredPlaygrounds.length === 0 && recentPlaygrounds.length === 0
                 ? null
                 : recentPlaygrounds.map((playground) => {
-                    const IconComponent =
-                      lucideIconMap[playground.icon] || Code2;
+                    const IconComponent = playground.icon || "/code.svg";
                     return (
                       <SidebarMenuItem key={playground.id}>
                         <SidebarMenuButton
@@ -176,7 +173,12 @@ export function DashboardSidebar({
                         >
                           <Link href={`/playground/${playground.id}`}>
                             {IconComponent && (
-                              <IconComponent className="h-4 w-4" />
+                              <Image
+                                src={IconComponent}
+                                width={16}
+                                height={16}
+                                alt="</>"
+                              />
                             )}
                             <span>{playground.name}</span>
                           </Link>
