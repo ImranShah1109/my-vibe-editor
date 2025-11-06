@@ -147,7 +147,7 @@ export function TemplateFileTree({
           <SidebarGroupContent>
             <SidebarMenu>
               {isRootFolder ? (
-                (data as TemplateFolder).items.map((child, index) => (
+                (data as TemplateFolder).items?.map((child, index) => (
                   <TemplateNode
                     key={index}
                     item={child}
