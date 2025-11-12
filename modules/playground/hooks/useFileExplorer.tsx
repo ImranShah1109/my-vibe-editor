@@ -1,3 +1,4 @@
+import { startTransition } from "react";
 import { create } from "zustand";
 import { toast } from "sonner";
 import { TemplateFile, TemplateFolder } from "../lib/path-to-json";
@@ -474,18 +475,20 @@ export const useFileExplorer = create<FileExplorerState>((set, get) => ({
   },
 
   updateFileContent: (fileId, content) => {
-    set((state) => ({
-      openFiles: state.openFiles.map((file) =>
-        file.id === fileId
-          ? {
-              ...file,
-              content,
-              hasUnsavedChanges: content !== file.originalContent,
-            }
-          : file
-      ),
-      editorContent:
-        fileId === state.activeFileId ? content : state.editorContent,
-    }));
+    startTransition(() => {
+      set((state) => ({
+        openFiles: state.openFiles.map((file) =>
+          file.id === fileId
+            ? {
+                ...file,
+                content,
+                hasUnsavedChanges: content !== file.originalContent,
+              }
+            : file
+        ),
+        editorContent:
+          fileId === state.activeFileId ? content : state.editorContent,
+      }));
+    });
   },
 }));
