@@ -506,6 +506,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
                           components={{
+                            // @ts-ignore
                             code: ({ children, className, inline }) => {
                               if (inline) {
                                 return (
@@ -594,6 +595,7 @@ export const AIChatSidePanel: React.FC<AIChatSidePanelProps> = ({
                           remarkPlugins={[remarkGfm, remarkMath]}
                           rehypePlugins={[rehypeKatex]}
                           components={{
+                            // @ts-ignore
                             code: ({ children, className, inline }) => {
                               if (inline) {
                                 return (
