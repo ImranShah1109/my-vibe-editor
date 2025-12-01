@@ -22,6 +22,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import LoadingStep from "@/modules/playground/components/loader";
+import MonacopilotPlaygroundEditor from "@/modules/playground/components/monacopilot-playground-editor";
 import { PlaygroundEditor } from "@/modules/playground/components/playground-editor";
 import { TemplateFileTree } from "@/modules/playground/components/playground-explorer";
 import ToggleAI from "@/modules/playground/components/toggle-ai";
@@ -486,7 +487,7 @@ const MainPlaygroundPage = () => {
                     className="h-full"
                   >
                     <ResizablePanel defaultSize={isPreviewVisible ? 50 : 100}>
-                      <PlaygroundEditor
+                      {/* <PlaygroundEditor
                         activeFile={activeFile}
                         content={activeFile?.content || ""}
                         onContentChange={(value: string) => {
@@ -505,6 +506,15 @@ const MainPlaygroundPage = () => {
                         onTriggerSuggestion={(type: string, editor: any) =>
                           aiSuggestions.fetchSuggestion(type, editor)
                         }
+                      /> */}
+                      <MonacopilotPlaygroundEditor
+                        activeFile={activeFile}
+                        content={activeFile?.content || ""}
+                        onContentChange={(value: string) => {
+                          activeFileId &&
+                            updateFileContent(activeFileId, value);
+                        }}
+                        aiIsEnabled={aiSuggestions.isEnabled}
                       />
                     </ResizablePanel>
                     {isPreviewVisible && (
