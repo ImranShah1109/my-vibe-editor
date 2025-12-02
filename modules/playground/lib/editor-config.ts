@@ -52,7 +52,7 @@ export const getEditorLanguage = (fileExtension: string): string => {
   return languageMap[extension] || "plaintext";
 };
 
-export const configureMonaco = (monaco: Monaco) => {
+export const configureMonaco = (monaco: Monaco, theme?: string) => {
   // Define a beautiful modern dark theme
   monaco.editor.defineTheme("modern-dark", {
     base: "vs-dark",
@@ -223,8 +223,173 @@ export const configureMonaco = (monaco: Monaco) => {
     },
   });
 
+  // Define a complementary modern light theme
+  monaco.editor.defineTheme("modern-light", {
+    base: "vs",
+    inherit: true,
+    rules: [
+      // Comments
+      { token: "comment", foreground: "7A7A7A", fontStyle: "italic" },
+
+      // Keywords
+      { token: "keyword", foreground: "AA45A5", fontStyle: "bold" },
+      { token: "keyword.control", foreground: "AA45A5", fontStyle: "bold" },
+      { token: "keyword.operator", foreground: "444444" },
+
+      // Strings
+      { token: "string", foreground: "B76A50" },
+      { token: "string.quoted", foreground: "B76A50" },
+      { token: "string.template", foreground: "B76A50" },
+
+      // Numbers
+      { token: "number", foreground: "6A8F5B" },
+
+      // Functions
+      { token: "entity.name.function", foreground: "8C7A00" },
+      { token: "support.function", foreground: "8C7A00" },
+
+      // Variables
+      { token: "variable", foreground: "0074C2" },
+      { token: "variable.parameter", foreground: "0074C2" },
+      { token: "variable.other", foreground: "0074C2" },
+
+      // Types
+      { token: "entity.name.type", foreground: "1D8F7A" },
+      { token: "support.type", foreground: "1D8F7A" },
+      { token: "storage.type", foreground: "1F74C8" },
+
+      // Classes
+      { token: "entity.name.class", foreground: "1D8F7A" },
+      { token: "support.class", foreground: "1D8F7A" },
+
+      // Constants
+      { token: "constant", foreground: "008CFF" },
+      { token: "constant.language", foreground: "1F74C8" },
+      { token: "constant.numeric", foreground: "6A8F5B" },
+
+      // Operators
+      { token: "punctuation", foreground: "333333" },
+
+      // HTML / XML
+      { token: "tag", foreground: "1F74C8" },
+      { token: "tag.id", foreground: "0074C2" },
+      { token: "tag.class", foreground: "3683CE" },
+      { token: "attribute.name", foreground: "0074C2" },
+      { token: "attribute.value", foreground: "B76A50" },
+
+      // CSS
+      { token: "attribute.name.css", foreground: "0074C2" },
+      { token: "attribute.value.css", foreground: "B76A50" },
+      { token: "property-name.css", foreground: "0074C2" },
+      { token: "property-value.css", foreground: "B76A50" },
+
+      // JSON
+      { token: "key", foreground: "0074C2" },
+      { token: "string.key", foreground: "0074C2" },
+      { token: "string.value", foreground: "B76A50" },
+
+      // Error / Warning
+      { token: "invalid", foreground: "D72A2A", fontStyle: "underline" },
+      {
+        token: "invalid.deprecated",
+        foreground: "666666",
+        fontStyle: "strikethrough",
+      },
+    ],
+    colors: {
+      // Editor background
+      "editor.background": "#FFFFFF",
+      "editor.foreground": "#1A1A1A",
+
+      // Line numbers
+      "editorLineNumber.foreground": "#9B9B9B",
+      "editorLineNumber.activeForeground": "#333333",
+
+      // Cursor
+      "editorCursor.foreground": "#000000",
+
+      // Selection
+      "editor.selectionBackground": "#CCE7FF",
+      "editor.selectionHighlightBackground": "#BAD6FF75",
+      "editor.inactiveSelectionBackground": "#E0E0E080",
+
+      // Current line
+      "editor.lineHighlightBackground": "#F5F5F5",
+      "editor.lineHighlightBorder": "#E0E0E0",
+
+      // Gutter
+      "editorGutter.background": "#FFFFFF",
+      "editorGutter.modifiedBackground": "#D19A0966",
+      "editorGutter.addedBackground": "#37A13F66",
+      "editorGutter.deletedBackground": "#F1514166",
+
+      // Scrollbar
+      "scrollbar.shadow": "#00000022",
+      "scrollbarSlider.background": "#CCCCCC66",
+      "scrollbarSlider.hoverBackground": "#CCCCCC99",
+      "scrollbarSlider.activeBackground": "#CCCCCCCC",
+
+      // Minimap
+      "minimap.background": "#F3F3F3",
+      "minimap.selectionHighlight": "#CCE7FF",
+
+      // Find/Replace
+      "editor.findMatchBackground": "#FFDA7A",
+      "editor.findMatchHighlightBackground": "#FFF1B880",
+      "editor.findRangeHighlightBackground": "#D2F5C480",
+
+      // Word highlight
+      "editor.wordHighlightBackground": "#E0E0E080",
+      "editor.wordHighlightStrongBackground": "#C8E8FF80",
+
+      // Brackets
+      "editorBracketMatch.background": "#CCE7FF80",
+      "editorBracketMatch.border": "#6A6A6A",
+
+      // Guides
+      "editorIndentGuide.background": "#E4E4E4",
+      "editorIndentGuide.activeBackground": "#C6C6C6",
+
+      // Ruler
+      "editorRuler.foreground": "#E4E4E4",
+
+      // Whitespace
+      "editorWhitespace.foreground": "#C8C8C8",
+
+      // Errors / Warnings / Info
+      "editorError.foreground": "#D72A2A",
+      "editorWarning.foreground": "#BB8200",
+      "editorInfo.foreground": "#007ACC",
+      "editorHint.foreground": "#555555",
+
+      // Suggest widget
+      "editorSuggestWidget.background": "#FFFFFF",
+      "editorSuggestWidget.border": "#D6D6D6",
+      "editorSuggestWidget.foreground": "#1A1A1A",
+      "editorSuggestWidget.selectedBackground": "#EAEAEA",
+
+      // Hover widget
+      "editorHoverWidget.background": "#FFFFFF",
+      "editorHoverWidget.border": "#D6D6D6",
+
+      // Panels
+      "panel.background": "#FFFFFF",
+      "panel.border": "#D6D6D6",
+
+      // Activity bar
+      "activityBar.background": "#FFFFFF",
+      "activityBar.foreground": "#1A1A1A",
+      "activityBar.border": "#D6D6D6",
+
+      // Side bar
+      "sideBar.background": "#FFFFFF",
+      "sideBar.foreground": "#1A1A1A",
+      "sideBar.border": "#D6D6D6",
+    },
+  });
+
   // Set the theme
-  monaco.editor.setTheme("modern-dark");
+  monaco.editor.setTheme(theme === "light" ? "modern-light" : "modern-dark");
 
   // Configure additional editor settings
   monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
