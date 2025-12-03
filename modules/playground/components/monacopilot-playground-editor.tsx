@@ -8,6 +8,7 @@ import {
   configureMonaco,
   defaultEditorOptions,
 } from "../lib/editor-config";
+import { useTheme } from "next-themes";
 
 interface MonacopilotPlaygroundEditorProps {
   activeFile: TemplateFile | undefined;
@@ -43,6 +44,8 @@ const MonacopilotPlaygroundEditor = ({
   onContentChange,
   aiIsEnabled,
 }: MonacopilotPlaygroundEditorProps) => {
+  const { theme } = useTheme();
+
   const editorRef = useRef<any>(null);
   const monacoRef = useRef<Monaco | null>(null);
   const copilotRef = useRef<CompletionRegistration | null>(null);
@@ -94,7 +97,7 @@ const MonacopilotPlaygroundEditor = ({
       });
     }
 
-    configureMonaco(monaco);
+    configureMonaco(monaco, theme);
   };
 
   useEffect(() => {
@@ -112,7 +115,7 @@ const MonacopilotPlaygroundEditor = ({
       copilotRef.current?.deregister();
       copilotRef.current = null;
     };
-  }, [aiIsEnabled, activeFile?.filename, content]);
+  }, [aiIsEnabled, activeFile?.filename, content, theme]);
 
   return (
     <Editor
