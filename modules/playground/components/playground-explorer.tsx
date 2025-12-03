@@ -123,7 +123,7 @@ export function TemplateFileTree({
   };
 
   return (
-    <Sidebar>
+    <div className="h-full bg-sidebar border-r">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>{title}</SidebarGroupLabel>
@@ -195,7 +195,7 @@ export function TemplateFileTree({
         onClose={() => setIsNewFolderDialogOpen(false)}
         onCreateFolder={handleCreateFolder}
       />
-    </Sidebar>
+    </div>
   );
 }
 
