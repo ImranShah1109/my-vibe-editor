@@ -19,6 +19,8 @@ import {
   Zap,
   Database,
   FlameIcon,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,6 +38,16 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useTheme } from "next-themes";
 
 // Define the interface for a single playground item, icon is now a string
 interface PlaygroundData {
@@ -63,6 +75,7 @@ export function DashboardSidebar({
   initialPlaygroundData: PlaygroundData[];
 }) {
   const pathname = usePathname();
+  const { setTheme, theme } = useTheme();
   const [starredPlaygrounds, setStarredPlaygrounds] = useState(
     initialPlaygroundData.filter((p) => p.starred)
   );
@@ -200,17 +213,46 @@ export function DashboardSidebar({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Settings">
-              <Link href="/settings">
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="w-full justify-start cursor-pointer"
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              Settings
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-52">
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+              <DropdownMenuSubContent sideOffset={2} className="w-40">
+                <DropdownMenuItem
+                  onClick={() => setTheme("light")}
+                  className={
+                    theme === "light"
+                      ? "bg-muted text-primary font-semibold"
+                      : ""
+                  }
+                >
+                  <Sun className="h-4 w-4 mr-2" /> Light
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme("dark")}
+                  className={
+                    theme === "dark"
+                      ? "bg-muted text-primary font-semibold"
+                      : ""
+                  }
+                >
+                  <Moon className="h-4 w-4 mr-2" /> Dark
+                </DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );
