@@ -37,10 +37,13 @@ const Footer = () => {
               {/* <Link href="https://www.facebook.com" target="_blank">
                 <FacebookIcon className="h-6 w-6 text-blue-600 hover:text-blue-800" />
               </Link> */}
-              <Link href="https://www.twitter.com" target="_blank">
+              <Link href="https://x.com/iamImranShahDev" target="_blank">
                 <TwitterIcon className="h-6 w-6 text-blue-400 hover:text-blue-600" />
               </Link>
-              <Link href="https://www.linkedin.com" target="_blank">
+              <Link
+                href="https://www.linkedin.com/in/imran-shaha-651904143/"
+                target="_blank"
+              >
                 <Linkedin className="h-6 w-6 text-blue-700 hover:text-blue-900" />
               </Link>
             </div>

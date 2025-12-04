@@ -1,4 +1,4 @@
-# <div style="height:55px;display:flex"><img src="./public/logo.svg" width="50" height="40"/> My Vibe Code Editor</div>
+# <div style="height:55px;display:flex"><img src="./public/logo.svg" width="50" height="40"/> My VibeCode Editor</div>
 
 A modern, powerful web-based code playground built with **Next.js**, **Monaco Editor**,**Monacopilot**, **MongoDB**,**Gemini AI Auto Code Completion**, **NextAuth**, and **ShadCN UI**, **WebContainer**.  
 Live playgrounds, syntax-highlighting, themes, templates, and cloud sync — all in one place.
