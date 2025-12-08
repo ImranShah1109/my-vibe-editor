@@ -255,6 +255,11 @@ export async function saveTemplateStructureToJson(
 
     // Ensure the output directory exists
     const outputDir = path.dirname(outputPath);
+    if (!outputDir.startsWith("/tmp")) {
+      throw new Error(
+        `Output path must be inside /tmp. Received: ${outputDir}`
+      );
+    }
     await fs.promises.mkdir(outputDir, { recursive: true });
 
     // Write the JSON file
