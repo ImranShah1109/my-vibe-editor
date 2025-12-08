@@ -14,7 +14,7 @@ export default async function DashboardLayout({
     //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     NEXTJS: "/nextjs-icon.svg",
     //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-    EXPRESSJS: "/expressjs-icon.svg",
+    EXPRESS: "/expressjs-icon.svg",
     //   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
     VUE: "/vuejs-icon.svg",
     //"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
