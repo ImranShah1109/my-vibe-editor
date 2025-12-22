@@ -103,8 +103,8 @@ Your app includes **WebContainer** (by StackBlitz) allowing:
 ### 1️⃣ Clone Repo
 
 ```sh
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
+git clone https://github.com/ImranShah1109/my-vibe-editor.git
+cd my-vibe-editor
 ```
 
 ### 2️ Install Dependencies
